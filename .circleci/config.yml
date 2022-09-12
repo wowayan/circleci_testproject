@@ -1,12 +1,11 @@
-version: 2.1 # Use version 2.1 to enable Orb usage.
-
-orbs:
-  win: circleci/windows@4.1.1 # The Windows orb give you everything you need to start using the Windows executor.
+version: 2.1 
 
 jobs:
   build: # name of your job
-    executor: win/default # executor type
-
+    resource_class: 'windows.medium'
+    machine:
+      image: 'windows-server-2022-gui:current'   
+      shell: 'powershell.exe -ExecutionPolicy Bypass'
     steps:
       # Commands are run in a Windows virtual machine environment
       - checkout
