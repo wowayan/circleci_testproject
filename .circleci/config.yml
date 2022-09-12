@@ -6,7 +6,7 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-testbuild: # name of your job
+  build-and-test: # name of your job
     machine: # executor type
       image: windows-default
     resource_class: windows.medium
@@ -20,11 +20,14 @@ jobs:
           name: Run tests
           command: |
             dotnet test
+            
+      - checkout
+      - run: Write-Host 'Hello, Windows'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  sample1: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
